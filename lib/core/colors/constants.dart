@@ -10,7 +10,6 @@ const greyClr = Colors.grey;
 const lwhiteClr = Color.fromARGB(37, 255, 255, 255);
 
 // height&width
-
 const w5 = SizedBox(
   width: 05,
 );
@@ -21,6 +20,10 @@ const w10 = SizedBox(
 
 const w20 = SizedBox(
   width: 20,
+);
+
+const w30 = SizedBox(
+  width: 30,
 );
 
 const h10 = SizedBox(
@@ -36,8 +39,6 @@ const h30 = SizedBox(
 );
 
 // Border radius
-
-
 BorderRadius br5 = BorderRadius.circular(05);
 
 BorderRadius br8 = BorderRadius.circular(08);
@@ -47,3 +48,7 @@ BorderRadius br10 = BorderRadius.circular(10);
 BorderRadius br20 = BorderRadius.circular(20);
 
 BorderRadius br30 = BorderRadius.circular(30);
+
+// API Base url
+const apiBaseUrl = "https://api.themoviedb.org/3";
+const apiImgUrl = "https://image.tmdb.org/t/p/w500";

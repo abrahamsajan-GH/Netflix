@@ -28,7 +28,7 @@ class ScreenHome extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: AnimatedOpacity(
                 opacity: scrollNotifier.value ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 400),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 12.0),
