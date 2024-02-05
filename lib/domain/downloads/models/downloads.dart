@@ -8,7 +8,9 @@ part 'downloads.g.dart';
 @freezed
 class DownloadsModel with _$DownloadsModel {
   const factory DownloadsModel({
+    @JsonKey(name: "backdrop_path") required String? backdropPath,
     @JsonKey(name: "poster_path") required String? posterPath,
+    @JsonKey(name: "title") required String? title,
   }) = _DownloadsModel;
 
   factory DownloadsModel.fromJson(Map<String, dynamic> json) =>

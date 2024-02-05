@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/search/search_bloc.dart';
 import 'package:netflix_clone/core/colors/constants.dart';
 import 'package:netflix_clone/presentation/search/widgets/search_title.dart';
-
-const imageUrl =
-    "https://media.themoviedb.org/t/p/w220_and_h330_face/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg";
 
 class SearchResultsWidget extends StatelessWidget {
   const SearchResultsWidget({super.key});
@@ -15,30 +14,35 @@ class SearchResultsWidget extends StatelessWidget {
       children: [
         const SearchPageTitle(title: 'Movies & TV'),
         h10,
-        Expanded(
-            child: GridView.count(
+        Expanded(child: BlocBuilder<SearchBloc, SearchState>(
+          builder: (context, resultstate) {
+            return GridView.count(
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 15,
                 crossAxisCount: 3,
                 childAspectRatio: 1 / 1.4,
                 shrinkWrap: true,
                 children: List.generate(20, (index) {
-                  return const SearchCard();
-                })))
+                  final movies = resultstate.searchResultsList[index];
+                  return SearchCard(imageUrl: '$apiImgUrl${movies.posterPath}');
+                }));
+          },
+        ))
       ],
     );
   }
 }
 
 class SearchCard extends StatelessWidget {
-  const SearchCard({super.key});
+  final String imageUrl;
+  const SearchCard({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: br8,
-        image: const DecorationImage(
+        image: DecorationImage(
           image: NetworkImage(imageUrl),
           fit: BoxFit.cover,
         ),

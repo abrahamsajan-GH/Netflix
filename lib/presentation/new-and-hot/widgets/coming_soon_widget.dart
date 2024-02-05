@@ -13,7 +13,7 @@ class ComingSoonWidget extends StatelessWidget {
       children: [
         const SizedBox(
           width: 60,
-          height: 470,
+          height: 450,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -32,14 +32,14 @@ class ComingSoonWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: size.width - 70,
-          height: 470,
+          width: size.width - 85,
+          height: 450,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 width: double.infinity,
-                height: 180,
+                height: 160,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -48,7 +48,7 @@ class ComingSoonWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              h20,
+              h10,
               const Row(
                 children: [
                   Row(
@@ -81,7 +81,7 @@ class ComingSoonWidget extends StatelessWidget {
                             )
                           ],
                         ),
-                        w10,
+                        w5,
                         Column(
                           children: [
                             Icon(
@@ -95,7 +95,7 @@ class ComingSoonWidget extends StatelessWidget {
                             )
                           ],
                         ),
-                        w10,
+                        w5,
                       ],
                     ),
                   )
@@ -112,9 +112,9 @@ class ComingSoonWidget extends StatelessWidget {
                   h10,
                   Text(
                     "Coleen Rooney is a regal presence in, hopefully, the last word on the Wag wars; four mystified cops aren't alone in Netflix's exhausting new crime thriller; and in the final series of Breeders, Martin Freeman becomes a zen master.",
-                    style: TextStyle(color: greyClr, fontSize: 14),
+                    style: TextStyle(color: greyClr, fontSize: 12),
                   ),
-                  h10,
+                  h5,
                   Text(
                     "Adventure • Epic World • SuperPowers • US",
                     style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),

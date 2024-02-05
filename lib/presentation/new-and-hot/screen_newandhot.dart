@@ -38,24 +38,24 @@ class ScreenNewAndHot extends StatelessWidget {
                   Tab(
                     text: "🔥 Everyone's watching",
                   ),
-                  // Tab(
-                  //   text: "🎮 Games",
-                  // ),
-                  // Tab(
-                  //   text: "🔟 Top 10 Movies",
-                  // ),
+                  Tab(
+                    text: "🎮 Games",
+                  ),
+                  Tab(
+                    text: "🔟 Top 10 Movies",
+                  ),
                 ],
                 labelStyle: const TextStyle(
                   color: whiteClr,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'montserrat',
-                  letterSpacing: 0.5,
+                  letterSpacing: 0.1,
                 )),
           ),
           body: Padding(
             padding:
-                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 4.0),
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
             child: TabBarView(
               children: [
                 _comingSoon(),

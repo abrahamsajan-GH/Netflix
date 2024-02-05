@@ -9,22 +9,27 @@ class TopBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-              color: whiteClr, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        const Spacer(),
-        IconButton(
-            onPressed: () => const ScreenSearch(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+                color: whiteClr, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const Spacer(),
+          IconButton(
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ScreenSearch())),
             icon: const Icon(
               Icons.search,
               color: whiteClr,
-              size: 30,
-            )),
-      ],
+              size: 32,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

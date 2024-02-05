@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/search/search_bloc.dart';
 import 'package:netflix_clone/core/colors/constants.dart';
 import 'package:netflix_clone/presentation/search/widgets/search_title.dart';
-
-const imageUrl =
-    "https://media.themoviedb.org/t/p/w250_and_h141_face/sxskOU71CO8LaNX2LOtjYFUtKv7.jpg";
 
 class SearchIdleWidget extends StatelessWidget {
   const SearchIdleWidget({super.key});
@@ -13,24 +13,52 @@ class SearchIdleWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SearchPageTitle(title: 'Top Searches',),
+        const SearchPageTitle(
+          title: 'Top Searches',
+        ),
         h10,
         Expanded(
-          child: ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (ctx, index) => const TopSearchesList(),
-              separatorBuilder: (ctx, index) => h20,
-              itemCount: 20),
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(redClr),
+                  ),
+                );
+              } else if (state.isErr) {
+                return const Center(
+                  child: Text("Error while loading data"),
+                );
+              } else if (state.searchIdleList.isEmpty) {
+                return const Center(
+                  child: Text("Error while loading data"),
+                );
+              } else {
+                return ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, index) {
+                      final movies = state.searchIdleList[index];
+                      return TopSearchesList(
+                          title: movies.title ?? "No Title Provided",
+                          imageUrl: '$apiImgUrl${movies.backdropPath}');
+                    },
+                    separatorBuilder: (ctx, index) => h20,
+                    itemCount: state.searchIdleList.length);
+              }
+            },
+          ),
         ),
       ],
     );
   }
 }
 
-
-
 class TopSearchesList extends StatelessWidget {
-  const TopSearchesList({super.key});
+  final String title;
+  final String imageUrl;
+  const TopSearchesList(
+      {super.key, required this.title, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -41,21 +69,25 @@ class TopSearchesList extends StatelessWidget {
           width: screenWidth * 0.30,
           height: 70,
           decoration: BoxDecoration(
-              image: const DecorationImage(
+              image: DecorationImage(
                   image: NetworkImage(imageUrl), fit: BoxFit.cover),
               borderRadius: br8),
         ),
-        const Expanded(
-          child: Text(
-            'Movie Name',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10.0, right: 6.0),
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         const Icon(
           CupertinoIcons.play_circle,
           color: whiteClr,
-          size: 50,
-        )
+          size: 40,
+        ),
+        w5,
       ],
     );
   }

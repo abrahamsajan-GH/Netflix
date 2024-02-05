@@ -1,14 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/search/search_bloc.dart';
 import 'package:netflix_clone/core/colors/constants.dart';
+import 'package:netflix_clone/domain/debounce/debouncer.dart';
 import 'package:netflix_clone/presentation/search/widgets/search_idle.dart';
+import 'package:netflix_clone/presentation/search/widgets/search_results.dart';
 // import 'package:netflix_clone/presentation/search/widgets/search_results.dart';
 
 class ScreenSearch extends StatelessWidget {
-  const ScreenSearch({super.key});
+  ScreenSearch({super.key});
+
+  final _debouncer = Debouncer(milliseconds: 1 * 1000);
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<SearchBloc>(context).add(const Initialize());
+    });
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -17,21 +26,45 @@ class ScreenSearch extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CupertinoSearchTextField(
-                  backgroundColor: greyClr.withOpacity(0.3),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                  prefixIcon: const Icon(
-                    CupertinoIcons.search,
-                    color: greyClr,
-                  ),
-                  suffixIcon: const Icon(
-                    CupertinoIcons.xmark_circle_fill,
-                    color: greyClr,
-                  ),
-                  style: const TextStyle(color: whiteClr)),
+                backgroundColor: greyClr.withOpacity(0.3),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                prefixIcon: const Icon(
+                  CupertinoIcons.search,
+                  color: greyClr,
+                ),
+                suffixIcon: const Icon(
+                  CupertinoIcons.xmark_circle_fill,
+                  color: greyClr,
+                ),
+                style: const TextStyle(color: whiteClr, letterSpacing: 0.3),
+                onChanged: (value) {
+                  _debouncer.run(() {
+                    BlocProvider.of<SearchBloc>(context)
+                        .add(SearchMovie(searchResultsPath: value));
+                  });
+                },
+              ),
               h10,
-              const Expanded(child: SearchIdleWidget()),
-              // const Expanded(child: SearchResultsWidget()),
+              Expanded(child: BlocBuilder<SearchBloc, SearchState>(
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(redClr),
+                      ),
+                    );
+                  } else if (state.isErr) {
+                    return const Center(
+                      child: Text("Error while loading data"),
+                    );
+                  } else if (state.searchResultsList.isEmpty) {
+                    return const SearchIdleWidget();
+                  } else {
+                    return const SearchResultsWidget();
+                  }
+                },
+              )),
             ],
           ),
         ),

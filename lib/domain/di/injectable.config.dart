@@ -11,9 +11,12 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:netflix_clone/application/downloads/downloads_bloc.dart' as _i5;
+import 'package:netflix_clone/application/search/search_bloc.dart' as _i8;
 import 'package:netflix_clone/domain/downloads/downloads_api_cats.dart' as _i3;
+import 'package:netflix_clone/domain/search/search_service.dart' as _i6;
 import 'package:netflix_clone/infrastructure/downloads/downloads_data.dart'
     as _i4;
+import 'package:netflix_clone/infrastructure/search/search_data.dart' as _i7;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -29,6 +32,11 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i3.DownloadsApiCats>(() => _i4.DownloadsData());
     gh.factory<_i5.DownloadsBloc>(
         () => _i5.DownloadsBloc(gh<_i3.DownloadsApiCats>()));
+    gh.lazySingleton<_i6.SearchService>(() => _i7.SearchData());
+    gh.factory<_i8.SearchBloc>(() => _i8.SearchBloc(
+          gh<_i3.DownloadsApiCats>(),
+          gh<_i6.SearchService>(),
+        ));
     return this;
   }
 }

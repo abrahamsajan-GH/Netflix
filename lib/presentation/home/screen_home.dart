@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/core/colors/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/bg_img_widget.dart';
 import 'package:netflix_clone/presentation/home/widgets/text_border.dart';
 import 'package:netflix_clone/presentation/home/widgets/topten.dart';
+import 'package:netflix_clone/presentation/search/screen_search.dart';
 import 'package:netflix_clone/presentation/widgets/home_card.dart';
 
 const imageUrl = "assets/images/riverdale.webp";
@@ -21,8 +23,8 @@ class ScreenHome extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: Colors.transparent,
-            expandedHeight: 100.0,
+            backgroundColor: blackClr.withOpacity(0.6),
+            expandedHeight: 90.0,
             floating: true,
             pinned: false,
             flexibleSpace: FlexibleSpaceBar(
@@ -30,25 +32,29 @@ class ScreenHome extends StatelessWidget {
                 opacity: scrollNotifier.value ? 1.0 : 0.0,
                 duration: const Duration(milliseconds: 400),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Image.asset(
                             "assets/images/logo.png",
-                            height: 40,
+                            height: 35,
                           ),
                           const Spacer(),
-                          const Icon(
-                            Icons.search,
-                            color: Colors.white,
-                            size: 35,
-                          ),
+                          IconButton(
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ScreenSearch())),
+                              icon: const Icon(
+                                Icons.search,
+                                size: 30,
+                                color: whiteClr,
+                              ))
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      h5,
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -56,30 +62,27 @@ class ScreenHome extends StatelessWidget {
                             children: Text(
                               "TV Shows",
                               style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
                               ),
                             ),
                           ),
-                          SizedBox(width: 20),
+                          w10,
                           TextBorder(
                             children: Text(
                               "Movies",
                               style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
                               ),
                             ),
                           ),
-                          SizedBox(width: 20),
+                          w10,
                           TextBorder(
                             children: Row(
                               children: [
                                 Text(
                                   "Categories",
                                   style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
                                   ),
                                 ),
                                 Icon(

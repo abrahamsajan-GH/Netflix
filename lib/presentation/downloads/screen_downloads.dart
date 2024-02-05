@@ -17,16 +17,18 @@ class ScreenDownloads extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const PreferredSize(
-            preferredSize: Size.fromHeight(50),
-            child: TopBarWidget(
-              title: "Downloads",
-            )),
-        body: ListView.separated(
-            padding: const EdgeInsets.all(10),
-            itemBuilder: (context1, index) => _widgetList[index],
-            separatorBuilder: (context1, index) => h30,
-            itemCount: _widgetList.length));
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(50),
+          child: TopBarWidget(
+            title: "Downloads",
+          )),
+      body: ListView.separated(
+        padding: const EdgeInsets.all(12.0),
+        itemBuilder: (context1, index) => _widgetList[index],
+        separatorBuilder: (context1, index) => h10,
+        itemCount: _widgetList.length,
+      ),
+    );
   }
 }
 
@@ -78,7 +80,7 @@ class Div2 extends StatelessWidget {
           ),
           textAlign: TextAlign.start,
         ),
-        h10,
+        h5,
         const Text(
           "We will download movies and shows just for you, so you will always have something to watch.",
           style: TextStyle(color: Colors.grey, fontSize: 12),
@@ -89,40 +91,45 @@ class Div2 extends StatelessWidget {
             return SizedBox(
               width: size.width,
               height: size.width,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Center(
-                    child: CircleAvatar(
-                      radius: size.width * 0.34,
-                      backgroundColor: Colors.grey.withOpacity(0.3),
+              child: state.isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(redClr),
+                    ))
+                  : Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Center(
+                          child: CircleAvatar(
+                            radius: size.width * 0.35,
+                            backgroundColor: Colors.grey.withOpacity(0.5),
+                          ),
+                        ),
+                        DownloadsImages(
+                          imageList: state.downloads.length > 1
+                              ? '$apiImgUrl${state.downloads[0].posterPath}'
+                              : '',
+                          margin: const EdgeInsets.only(left: 165),
+                          angle: 20,
+                          size: Size(size.width * 0.30, size.width * 0.46),
+                        ),
+                        DownloadsImages(
+                          imageList: state.downloads.length > 2
+                              ? '$apiImgUrl${state.downloads[1].posterPath}'
+                              : '',
+                          margin: const EdgeInsets.only(right: 165),
+                          angle: -20,
+                          size: Size(size.width * 0.30, size.width * 0.46),
+                        ),
+                        DownloadsImages(
+                          imageList: state.downloads.length > 3
+                              ? '$apiImgUrl${state.downloads[2].posterPath}'
+                              : '',
+                          margin: const EdgeInsets.only(top: 0),
+                          size: Size(size.width * 0.36, size.width * 0.56),
+                        )
+                      ],
                     ),
-                  ),
-                  DownloadsImages(
-                    imageList: state.downloads.length > 1
-                        ? '$apiImgUrl${state.downloads[0].posterPath}'
-                        : '',
-                    margin: const EdgeInsets.only(left: 165),
-                    angle: 20,
-                    size: Size(size.width * 0.30, size.width * 0.46),
-                  ),
-                  DownloadsImages(
-                    imageList: state.downloads.length > 2
-                        ? '$apiImgUrl${state.downloads[1].posterPath}'
-                        : '',
-                    margin: const EdgeInsets.only(right: 165),
-                    angle: -20,
-                    size: Size(size.width * 0.30, size.width * 0.46),
-                  ),
-                  DownloadsImages(
-                    imageList: state.downloads.length > 3
-                        ? '$apiImgUrl${state.downloads[2].posterPath}'
-                        : '',
-                    margin: const EdgeInsets.only(top: 0),
-                    size: Size(size.width * 0.36, size.width * 0.56),
-                  )
-                ],
-              ),
             );
           },
         ),
@@ -150,12 +157,11 @@ class Div3 extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10.0),
               child: Text(
                 'Set up',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
             ),
           ),
         ),
-        h20,
         h20,
         MaterialButton(
           color: lwhiteClr,
@@ -166,7 +172,7 @@ class Div3 extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 10.0),
             child: Text(
               'Find More to Download',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
           ),
         ),
@@ -174,4 +180,3 @@ class Div3 extends StatelessWidget {
     );
   }
 }
-
