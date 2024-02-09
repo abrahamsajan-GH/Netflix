@@ -2,8 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/constants.dart';
 
 class ComingSoonWidget extends StatelessWidget {
+  final String id;
+  final String month;
+  final String day;
+  final String backdropPath;
+  final String title;
+  final String releaseDate;
+  final String overview;
+  final String genres;
   const ComingSoonWidget({
     super.key,
+    required this.id,
+    required this.month,
+    required this.day,
+    required this.backdropPath,
+    required this.title,
+    required this.releaseDate,
+    required this.overview,
+    required this.genres,
   });
 
   @override
@@ -11,29 +27,29 @@ class ComingSoonWidget extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Row(
       children: [
-        const SizedBox(
+        SizedBox(
           width: 60,
-          height: 450,
+          height: 435,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "FEB",
-                style: TextStyle(
+                month,
+                style: const TextStyle(
                     fontSize: 20, fontWeight: FontWeight.bold, color: greyClr),
               ),
-              Text("22",
-                  style: TextStyle(
-                    fontSize: 46,
+              Text(day,
+                  style: const TextStyle(
+                    fontSize: 45,
                     fontWeight: FontWeight.bold,
                   ))
             ],
           ),
         ),
         SizedBox(
-          width: size.width - 85,
-          height: 450,
+          width: size.width - 75,
+          height: 435,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -42,82 +58,90 @@ class ComingSoonWidget extends StatelessWidget {
                 height: 160,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    "assets/images/nsn.webp",
+                  child: Image.network(
+                    backdropPath,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               h10,
-              const Row(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        "COLEEN ROONEY",
-                        style: TextStyle(
-                            fontSize: 22,
+                      SizedBox(
+                        width: 165,
+                        child: Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            letterSpacing: -3),
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 0.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5),
                     child: Row(
                       children: [
                         Column(
                           children: [
                             Icon(
                               Icons.notifications_none,
-                              size: 25,
+                              size: 28,
                               color: whiteClr,
                             ),
                             Text(
                               "Remind me",
-                              style: TextStyle(color: greyClr, fontSize: 11),
+                              style: TextStyle(color: greyClr, fontSize: 10),
                             )
                           ],
                         ),
-                        w5,
+                        w10,
                         Column(
                           children: [
                             Icon(
                               Icons.info_outline,
-                              size: 25,
+                              size: 28,
                               color: whiteClr,
                             ),
                             Text(
                               "Info",
-                              style: TextStyle(color: greyClr, fontSize: 11),
+                              style: TextStyle(color: greyClr, fontSize: 10),
                             )
                           ],
                         ),
-                        w5,
                       ],
                     ),
                   )
                 ],
               ),
               h20,
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Coming on 22 February",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    'Coming on $releaseDate',
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                   h10,
                   Text(
-                    "Coleen Rooney is a regal presence in, hopefully, the last word on the Wag wars; four mystified cops aren't alone in Netflix's exhausting new crime thriller; and in the final series of Breeders, Martin Freeman becomes a zen master.",
-                    style: TextStyle(color: greyClr, fontSize: 12),
+                    overview,
+                    maxLines: 8,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(color: greyClr, fontSize: 12),
                   ),
                   h5,
                   Text(
-                    "Adventure • Epic World • SuperPowers • US",
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                    genres,
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.bold),
                   )
                 ],
               )
