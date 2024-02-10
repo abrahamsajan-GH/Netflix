@@ -6,9 +6,10 @@ class HomeCard extends StatelessWidget {
   const HomeCard({
     super.key,
     required this.size,
-    required this.cardCategory,
+    required this.cardCategory, required this.posterImages,
   });
   final String cardCategory;
+  final List<String> posterImages;
   final Size size;
 
   @override
@@ -24,7 +25,12 @@ class HomeCard extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              children: List.generate(10, (index) => MovieCard(size: size)),
+              children: List.generate(
+                  posterImages.length,
+                  (index) => MovieCard(
+                        size: size,
+                        imageUrl: posterImages[index],
+                      )),
             ),
           )
         ],

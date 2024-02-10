@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/presentation/downloads/screen_downloads.dart';
-// import 'package:netflix_clone/presentation/games/screen_games.dart';
 import 'package:netflix_clone/presentation/home/screen_home.dart';
 import 'package:netflix_clone/presentation/landing/widgets/bottom_nav.dart';
-// import 'package:netflix_clone/presentation/my_netflix/screen_mynetflix.dart';
+import 'package:netflix_clone/presentation/my_netflix/screen_mynetflix.dart';
 import 'package:netflix_clone/presentation/new-and-hot/screen_newandhot.dart';
 import 'package:netflix_clone/presentation/search/screen_search.dart';
-// import 'package:netflix_clone/presentation/search/screen_search.dart';
 
 class ScreenLanding extends StatelessWidget {
   ScreenLanding({super.key});
@@ -14,10 +11,8 @@ class ScreenLanding extends StatelessWidget {
   final pages = [
     const ScreenHome(),
     ScreenSearch(),
-    // const ScreenGames(),
     const ScreenNewAndHot(),
-    ScreenDownloads(),
-    // const ScreenMyNetflix(),
+    const ScreenMyNetflix(),
   ];
 
   @override

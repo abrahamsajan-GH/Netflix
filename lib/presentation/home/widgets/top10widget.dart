@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/constants.dart';
-import 'package:netflix_clone/presentation/home/screen_home.dart';
 
 class Top10Widget extends StatelessWidget {
-  const Top10Widget({super.key, required this.size, required this.index});
+  const Top10Widget({super.key, required this.size, required this.index, required this.imageUrl});
 
   final int index;
   final Size size;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +45,8 @@ class Top10Widget extends StatelessWidget {
                 width: size.width * 0.26,
                 // height: size.width * 0.42,
                 decoration: BoxDecoration(
-                    image: const DecorationImage(
-                        image: AssetImage(randomImg), fit: BoxFit.cover),
+                    image: DecorationImage(
+                        image: NetworkImage(imageUrl), fit: BoxFit.cover),
                     borderRadius: br5),
               ),
             ),

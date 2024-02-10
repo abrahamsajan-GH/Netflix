@@ -27,7 +27,7 @@ class BottomNavWidgets extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_sharp), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.gamepad_rounded), label: 'Games'),
+                icon: Icon(Icons.search), label: 'Search'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.photo_filter_sharp), label: 'New & Hot'),
             BottomNavigationBarItem(

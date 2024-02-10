@@ -5,10 +5,11 @@ import 'package:netflix_clone/presentation/widgets/common_title.dart';
 class TopTen extends StatelessWidget {
   const TopTen({
     super.key,
-    required this.size,
+    required this.size, required this.posterImages,
   });
 
   final Size size;
+  final List<String> posterImages;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,12 @@ class TopTen extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: List.generate(
-                10,
-                (index) => Top10Widget(size: size, index: index + 1),
+                posterImages.length,
+                (index) => Top10Widget(
+                  size: size,
+                  index: index + 1,
+                  imageUrl: posterImages[index],
+                ),
               ),
             ),
           )

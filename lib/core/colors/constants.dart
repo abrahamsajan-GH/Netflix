@@ -9,6 +9,7 @@ const indigoClr = Colors.indigo;
 const greyClr = Colors.grey;
 const lwhiteClr = Color.fromARGB(37, 255, 255, 255);
 const redClr = Colors.red;
+const darkRed = Color.fromARGB(255, 253, 17, 0);
 
 // height&width
 const w5 = SizedBox(

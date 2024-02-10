@@ -7,12 +7,12 @@ import 'package:netflix_clone/domain/new_and_hot/model/new_and_hot.dart';
 import 'package:netflix_clone/domain/new_and_hot/n_and_h_service.dart';
 
 @LazySingleton(as: NewAndHotService)
-class NewAndHotImp implements NewAndHotService{
+class NewAndHotImp implements NewAndHotService {
   @override
   Future<Either<ApiFails, NewAndHot>> comingSoon() async {
     try {
-      final Response response = await Dio(BaseOptions())
-          .get(ApiEndPoints.comingSoonPath);
+      final Response response =
+          await Dio(BaseOptions()).get(ApiEndPoints.comingSoonPath);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = NewAndHot.fromJson(response.data);
@@ -28,8 +28,8 @@ class NewAndHotImp implements NewAndHotService{
   @override
   Future<Either<ApiFails, NewAndHot>> everyonesWatching() async {
     try {
-      final Response response = await Dio(BaseOptions())
-          .get(ApiEndPoints.everyonesWatchingPath);
+      final Response response =
+          await Dio(BaseOptions()).get(ApiEndPoints.everyonesWatchingPath);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = NewAndHot.fromJson(response.data);
@@ -40,5 +40,5 @@ class NewAndHotImp implements NewAndHotService{
     } catch (_) {
       return left(const ApiFails.clientFails());
     }
-  }  
+  }
 }

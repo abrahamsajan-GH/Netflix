@@ -37,20 +37,21 @@ class BgImageBtns extends StatelessWidget {
                 icon: const Icon(
                   Icons.play_arrow_sharp,
                   color: blackClr,
-                  size: 32,
+                  size: 28,
                 ),
                 label: const Text(
                   'Play',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: blackClr,
                   ),
                 ),
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.white),
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                    const EdgeInsets.symmetric(horizontal: 24.0),
+                    const EdgeInsets.symmetric(horizontal: 22.0),
                   ),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -64,7 +65,7 @@ class BgImageBtns extends StatelessWidget {
                 icon: const Icon(
                   Icons.add,
                   color: whiteClr,
-                  size: 32,
+                  size: 28,
                 ),
                 label: const Text(
                   'My List',
@@ -78,7 +79,7 @@ class BgImageBtns extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all<Color>(
                       const Color.fromARGB(36, 255, 255, 255)),
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                    const EdgeInsets.symmetric(horizontal: 24.0),
+                    const EdgeInsets.symmetric(horizontal: 22.0),
                   ),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
