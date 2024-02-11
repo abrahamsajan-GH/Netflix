@@ -6,7 +6,7 @@ class EveryonesWatchingWidget extends StatelessWidget {
   final String backdropPath;
   final String title;
   final String overview;
-  final String genres;
+  final List<String> genres;
   const EveryonesWatchingWidget({
     super.key,
     required this.id,
@@ -139,7 +139,7 @@ class EveryonesWatchingWidget extends StatelessWidget {
           ),
           h5,
           Text(
-            genres,
+            genres.join(" • "),
             style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           )
         ]));

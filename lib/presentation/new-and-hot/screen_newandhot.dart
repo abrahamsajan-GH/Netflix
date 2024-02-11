@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:netflix_clone/application/new_and_hot/new_and_hot_bloc.dart';
 import 'package:netflix_clone/core/colors/constants.dart';
+import 'package:netflix_clone/domain/new_and_hot/model/new_and_hot.dart';
 import 'package:netflix_clone/presentation/new-and-hot/widgets/coming_soon_widget.dart';
 import 'package:netflix_clone/presentation/new-and-hot/widgets/everyones_watching_widget.dart';
 import 'package:netflix_clone/presentation/widgets/topbar_widget.dart';
@@ -118,7 +119,8 @@ class ComingSoonList extends StatelessWidget {
                   title: finalDataCS.title ?? 'No title',
                   releaseDate: finalDataCS.releaseDate ?? 'Date not available',
                   overview: finalDataCS.overview ?? 'No overview available now',
-                  genres: finalDataCS.genreIds.toString(),
+                  genres: finalDataCS.getGenreNames(MovieGenres()),
+
                 );
               },
             );
@@ -172,7 +174,8 @@ class EveryonesWatchingList extends StatelessWidget {
                   backdropPath: '$apiImgUrl${finalDataEW.backdropPath}',
                   title: finalDataEW.title ?? 'No title',
                   overview: finalDataEW.overview ?? 'No overview available now',
-                  genres: finalDataEW.genreIds.toString(),
+                  genres: finalDataEW.getGenreNames(MovieGenres()),
+
                 );
               },
             );

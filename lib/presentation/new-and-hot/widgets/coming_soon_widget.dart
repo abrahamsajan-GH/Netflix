@@ -9,7 +9,7 @@ class ComingSoonWidget extends StatelessWidget {
   final String title;
   final String releaseDate;
   final String overview;
-  final String genres;
+  final List<String> genres;
   const ComingSoonWidget({
     super.key,
     required this.id,
@@ -139,7 +139,7 @@ class ComingSoonWidget extends StatelessWidget {
                   ),
                   h5,
                   Text(
-                    genres,
+                    genres.join(" • "),
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.bold),
                   )
